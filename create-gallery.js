@@ -88,33 +88,5 @@ let refs = {
 const galleryListMarkup = galleryItems.map((galleryItem, index) => galleryItemMarkup(galleryItem, index)).join('');
 console.log(galleryListMarkup);
 refs.gallery.insertAdjacentHTML('afterbegin', galleryListMarkup);
-// Реализация перелистывания галереи и закрытия с помощью ESC
-const onKeyPressed = event => {
-  if (
-    event.key !== 'Escape' &&
-    event.key !== 'ArrowLeft' &&
-    event.key !== 'ArrowRight'
-  ) {
-    return;
-  }
-
-  let offset;
-
-  switch (event.key) {
-    case 'Escape':
-      LightBoxClose();
-      return;
-
-    case 'ArrowRight':
-      offset = 1;
-      LightBoxImageSwipe(offset);
-      return;
-
-    case 'ArrowLeft':
-      offset = -1;
-      LightBoxImageSwipe(offset);
-      return;
-  }
-};
 
 
