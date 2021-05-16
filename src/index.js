@@ -16,18 +16,22 @@ const Theme = {
 const checkboxSwitcher = document.querySelector('#theme-switch-toggle')
 const body = document.querySelector('body');
 
-function switcherTheme(event) {
-    body.setAttribute('class', body.classList.contains(Theme.DARK) ? Theme.LIGHT : Theme.DARK);
-    // console.log(body.classList.contains(Theme.DARK))
-    localStorage.setItem('theme', body.classList.value)
-    // console.log(body.classList.value)
+function switcherTheme() {
+    if (localStorage.theme === Theme.LIGHT) {
+        body.classList.replace(Theme.LIGHT, Theme.DARK);
+        localStorage.setItem('theme', Theme.DARK);
+    } else {
+        body.classList.replace(Theme.DARK, Theme.LIGHT);
+        localStorage.setItem('theme', Theme.LIGHT);
+    }
 }
+
 
 checkboxSwitcher.addEventListener('change', switcherTheme);
 
 currentTheme()
 
 function currentTheme(event) {
-    body.setAttribute('class', localStorage.getItem('theme') === null ? Theme.LIGHT : localStorage.getItem('theme'));
-    if (localStorage.getItem('theme') === Theme.DARK) { checkboxSwitcher.checked = 'true' }
+    body.setAttribute('class', localStorage.getItem('theme') || Theme.LIGHT);
+    if (localStorage.getItem('theme') === Theme.DARK) checkboxSwitcher.checked = 'true'
 }
