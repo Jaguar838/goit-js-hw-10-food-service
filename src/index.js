@@ -16,6 +16,10 @@ const Theme = {
 const checkboxSwitcher = document.querySelector('#theme-switch-toggle')
 const body = document.querySelector('body');
 
+function currentTheme() {
+    body.setAttribute('class', localStorage.getItem('theme') || Theme.LIGHT);
+    if (localStorage.getItem('theme') === Theme.DARK) checkboxSwitcher.checked = 'true'
+}
 function switcherTheme() {
     if (localStorage.theme === Theme.LIGHT) {
         body.classList.replace(Theme.LIGHT, Theme.DARK);
@@ -26,12 +30,9 @@ function switcherTheme() {
     }
 }
 
+currentTheme()
 
 checkboxSwitcher.addEventListener('change', switcherTheme);
 
-currentTheme()
 
-function currentTheme(event) {
-    body.setAttribute('class', localStorage.getItem('theme') || Theme.LIGHT);
-    if (localStorage.getItem('theme') === Theme.DARK) checkboxSwitcher.checked = 'true'
-}
+
