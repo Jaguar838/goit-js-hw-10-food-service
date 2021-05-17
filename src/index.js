@@ -18,7 +18,7 @@ const body = document.querySelector('body');
 
 function currentTheme() {
     body.setAttribute('class', localStorage.getItem('theme') || Theme.LIGHT);
-    if (localStorage.getItem('theme') === Theme.DARK) checkboxSwitcher.checked = 'true'
+    if (localStorage.getItem('theme') === Theme.DARK) checkboxSwitcher.checked = 'false'
 }
 function switcherTheme() {
     if (localStorage.theme === Theme.LIGHT) {
