@@ -13,26 +13,35 @@ const Theme = {
     DARK: 'dark-theme',
 };
 
-const checkboxSwitcher = document.querySelector('#theme-switch-toggle')
+const checkbox = document.querySelector('#theme-switch-toggle')
 const body = document.querySelector('body');
+body.setAttribute('class', localStorage.getItem('theme') || Theme.LIGHT);
 
-function currentTheme() {
-    body.setAttribute('class', localStorage.getItem('theme') || Theme.LIGHT);
-    if (localStorage.getItem('theme') === Theme.DARK) checkboxSwitcher.checked = 'false'
-}
 function switcherTheme() {
+
     if (localStorage.theme === Theme.LIGHT) {
         body.classList.replace(Theme.LIGHT, Theme.DARK);
         localStorage.setItem('theme', Theme.DARK);
-    } else {
-        body.classList.replace(Theme.DARK, Theme.LIGHT);
-        localStorage.setItem('theme', Theme.LIGHT);
+        return
     }
+
+    body.classList.replace(Theme.DARK, Theme.LIGHT);
+    localStorage.setItem('theme', Theme.LIGHT);
 }
 
-currentTheme()
 
-checkboxSwitcher.addEventListener('change', switcherTheme);
+
+function onInputChange(event) {
+
+    if (event.target.checked) {
+        switcherTheme();
+        return
+    }
+    switcherTheme();
+}
+
+checkbox.addEventListener('change', onInputChange);
+
 
 
 
