@@ -15,11 +15,16 @@ const Theme = {
 
 const checkbox = document.querySelector('#theme-switch-toggle')
 const body = document.querySelector('body');
-body.setAttribute('class', localStorage.getItem('theme') || Theme.LIGHT);
+
+function currentTheme() {
+    body.setAttribute('class', localStorage.getItem('theme') || Theme.LIGHT);
+    if (localStorage.getItem('theme') === Theme.DARK) checkbox.checked = 'true'
+}
+
 
 function switcherTheme() {
 
-    if (localStorage.theme === Theme.LIGHT) {
+    if (event.target.checked === Theme.LIGHT) {
         body.classList.replace(Theme.LIGHT, Theme.DARK);
         localStorage.setItem('theme', Theme.DARK);
         return
@@ -29,19 +34,14 @@ function switcherTheme() {
     localStorage.setItem('theme', Theme.LIGHT);
 }
 
+currentTheme();
+checkbox.addEventListener('change', switcherTheme());
 
-
-function onInputChange(event) {
-
-    if (event.target.checked) {
-        switcherTheme();
-        return
+document.querySelector('input').addEventListener('click', e => {
+    console.log(e.target.checked);
+    if (e.target.checked) {
+        localStorage.setItem('checked', true)
+    } else {
+        localStorage.removeItem('checked')
     }
-    switcherTheme();
-}
-
-checkbox.addEventListener('change', onInputChange);
-
-
-
-
+})
