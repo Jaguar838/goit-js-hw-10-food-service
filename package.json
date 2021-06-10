@@ -51,7 +51,10 @@
     "webpackbar": "^4.0.0"
   },
   "dependencies": {
+    "basiclightbox": "^5.0.4",
     "core-js": "^3.6.5",
-    "handlebars": "^4.7.6"
+    "handlebars": "^4.7.6",
+    "pnotify": "^5.2.0",
+    "spin": "0.0.1"
   }
 }
